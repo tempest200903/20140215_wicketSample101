@@ -27,5 +27,6 @@ public class WicketApplication extends WebApplication {
 
 		// add your configuration here
 		mountPage("/top", Addressbook.class);
+		mountPage("/login", Login.class);
 	}
 }
