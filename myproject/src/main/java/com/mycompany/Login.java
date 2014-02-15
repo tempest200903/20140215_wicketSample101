@@ -20,6 +20,11 @@ package com.mycompany;
 //import jp.gihyo.wicket.page.simple.MyTimeline;
 //import jp.gihyo.wicket.AppSession;
 //import org.apache.wicket.PageParameters;
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.protocol.http.IRequestLogger.RequestData;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
@@ -68,9 +73,20 @@ public class Login extends WebPage {
 			public void onSubmit() {
 				System.out.println("userName =: " + userName);
 				System.out.println("password =: " + password);
+				Serializable sessionValue1 = getSession().getMetaData(key);
+				if (sessionValue1 == null) {
+					sessionValue1 = new Date();
+					getSession().setMetaData(key, sessionValue1);
+				}
+				System.out.println("sessionValue1 =: " + sessionValue1);
 			}
 		};
 		form.add(submit);
+
 	}
+
+	MetaDataKey<Date> key = new MetaDataKey<Date>() {
+		private static final long serialVersionUID = 1L;
+	};
 
 }
