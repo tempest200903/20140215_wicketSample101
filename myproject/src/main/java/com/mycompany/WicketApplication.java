@@ -32,6 +32,7 @@ public class WicketApplication extends WebApplication {
 		mountPage("/top", Addressbook.class);
 		mountPage("/login", Login.class);
 		mountPage("/listbook", ListBook.class);
+		mountPage("/ajax1", AjaxLinkPage1.class);
 	}
 
 	@Override
