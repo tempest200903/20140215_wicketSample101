@@ -19,6 +19,7 @@ public class ListBook extends WebPage {
 	public ListBook(PageParameters parameters) {
 		super(parameters);
 
+		// ListView
 		IModel<List<String>> myModel = new LoadableDetachableModel<List<String>>() {
 			private static final long serialVersionUID = 1L;
 
@@ -40,6 +41,7 @@ public class ListBook extends WebPage {
 		};
 		add(view);
 
+		// ExternalLink
 		ExternalLink link1 = new ExternalLink("link1",
 				"http://gihyo.jp/dev/feature/01/wicket/0005?page=2");
 		add(link1);
