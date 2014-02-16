@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -33,10 +34,15 @@ public class ListBook extends WebPage {
 			@Override
 			protected void populateItem(ListItem<String> item) {
 				String labelString = item.getModelObject();
-				item.add(new Label("column1", labelString));
+				Label label = new Label("column1", labelString);
+				item.add(label);
 			}
 		};
 		add(view);
+
+		ExternalLink link1 = new ExternalLink("link1",
+				"http://gihyo.jp/dev/feature/01/wicket/0005?page=2");
+		add(link1);
 	}
 
 }
