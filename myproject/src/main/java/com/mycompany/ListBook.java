@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.ExternalLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -29,14 +30,26 @@ public class ListBook extends WebPage {
 			}
 		};
 
-		ListView<String> view = new ListView<String>("repeatView", myModel) {
+		ListView<String> view = new ListView<String>("statusView", myModel) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void populateItem(ListItem<String> item) {
-				String labelString = item.getModelObject();
-				Label label = new Label("column1", labelString);
-				item.add(label);
+			protected void populateItem(final ListItem<String> item) {
+				final String modelObject = item.getModelObject();
+
+				Link<Void> link = new Link<Void>("replyLink") {
+					private static final long serialVersionUID = 1L;
+
+					@Override
+					public void onClick() {
+						System.out.println("onClick modelObject =: "
+								+ modelObject);
+					}
+				};
+				item.add(link);
+
+				Label label = new Label("screenName", modelObject);
+				link.add(label);
 			}
 		};
 		add(view);
